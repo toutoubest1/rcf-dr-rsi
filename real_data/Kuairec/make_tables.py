@@ -1,12 +1,4 @@
-"""KuaiRec LaTeX tables and supplementary figures from the result summaries (no estimation).
-
-usage: python -m real_data.kuairec.make_tables [OUTDIR]        (default: repository root)
-writes OUTDIR/tables/tab_kuairec.tex                            (main-text Table 6)
-       OUTDIR/supp_tables/kuairec_*.tex                         (Tables S34-S42)
-       OUTDIR/figures/kuairec_{error_distribution,regret,raw_sensitivity}.pdf   (Figures S4-S6)
-Inputs: results/kuairec/tables/{kuai_target_summary.csv, kuai_selection_summary.csv, design_kuairec.json,
-kuairec_audit.json} and, for Table S39 / Figure S4, the saved replications results/kuairec/raw/cell_*.pkl.gz.
-"""
+"""KuaiRec tables and supplementary figures"""
 import json, sys
 from pathlib import Path
 import numpy as np, pandas as pd
@@ -40,7 +32,6 @@ def write(name, txt):
     (OUT / "supp_tables" / name).write_text(txt)
 
 
-# ---------------------------------------------------------------- design / kappa table
 rows = []
 for ov in ["good", "moderate", "poor"]:
     L = D["logging"][ov]
@@ -60,7 +51,6 @@ Overlap & $\kappa$ & ESS$/n$ (training users) & ESS$/n$ (evaluation users) & $\m
 \end{table}
 """)
 
-# ---------------------------------------------------------------- reward diagnostics
 def rrow(lab, key):
     q = A[f"{key}_q"]
     return (f"{lab} & {100*A[key+'_frac_zero']:.2f} & {A[key+'_median']:.3f} & {A[key+'_mad']:.3f} & {A[key+'_skew']:.2f} & "
@@ -87,7 +77,6 @@ Watch ratio & """ + f"{A['raw_additive_resid_mad']:.3f} & -- & {f(A['raw_additiv
 \end{table}
 """)
 
-# ---------------------------------------------------------------- candidates
 order = ["Best-single", "Best-single-2", "Uniform", "Legacy-greedy", "Ridge-sm1", "Ridge-sm3 (target)", "Ridge-sm10", "Ridge-greedy", "RF-greedy"]
 desc = {"Best-single": "single category with best training mean (cat28)", "Best-single-2": "second-best single category (cat7)",
         "Uniform": "uniform over the 18 categories", "Legacy-greedy": r"$\arg\max$ of a ridge model on PCs 1--3",
@@ -116,7 +105,6 @@ Policy & Definition & $\log(1+\text{watch ratio})$ & Watch ratio & Uniform & Mod
 \end{table}
 """)
 
-# ---------------------------------------------------------------- full results tables (longtable per variant)
 def full_table(variant, label, cap):
     x = S[S.variant == variant].set_index(["overlap", "n", "method"])
     lines = []
@@ -152,7 +140,6 @@ write("kuairec_ols_full.tex", full_table(OLS, "tab:S-kuairec-ols",
 write("kuairec_raw_full.tex", full_table(RAW, "tab:S-kuairec-raw",
       r"KuaiRec sensitivity: untransformed watch ratio as the reward (exact target value 1.0089), Huber reward model, same logged samples and folds as Table~\ref{tab:S-kuairec-full}. The residuals are strongly right-skewed (Table~\ref{tab:S-kuairec-reward})."))
 
-# ---------------------------------------------------------------- weight / truncation diagnostics
 x = S[(S.variant == PRIM) & (S.method == "RCF-DR-VR-SN")].set_index(["overlap", "n"])
 xos = S[(S.variant == PRIM) & (S.method == "RCF-DR-os")].set_index(["overlap", "n"])
 lines = []
@@ -180,7 +167,6 @@ Overlap & $n$ & ESS$/n$ & Max $w$ & $\hat\alpha$ & $\hat\alpha\le2$ & Capped & H
 \end{table}
 """)
 
-# ---------------------------------------------------------------- error distribution (from the saved replication estimates)
 if HAVE_RAW:
     ems = ["DM", "SNIPW", "DR-clip", "RCF-DR-os", "RCF-DR-VR-SN"]
     lines = []
@@ -216,7 +202,6 @@ Overlap & $n$ & """ + " & ".join(["Median & Max"] * len(ems)) + r""" \\
 else:
     print("results/kuairec/raw/ not found: skipping kuairec_errors.tex (Table S39)")
 
-# ---------------------------------------------------------------- selection
 y = SEL[SEL.variant == PRIM]
 rg = y.pivot_table(index=["overlap", "n"], columns="method", values="regret")
 pe = y.pivot_table(index=["overlap", "n"], columns="method", values="p_eps_best")
@@ -247,7 +232,6 @@ Overlap & $n$ & """ + " & ".join(M8) + r""" & SNIPW & DR & VR-SN & SNIPW & DR & 
 \end{table}
 """)
 
-# ---------------------------------------------------------------- figures
 SHOW = ["DM", "SNIPW", "DR", "DR-clip", "RCF-DR-os", "RCF-DR-VR-SN"]
 STY = {"DM": ("tab:gray", "s"), "SNIPW": ("tab:olive", "^"), "DR": ("tab:red", "o"), "DR-clip": ("tab:orange", "v"),
        "RCF-DR-os": ("tab:purple", "D"), "RCF-DR-VR-SN": ("tab:blue", "*")}
@@ -311,7 +295,6 @@ if HAVE_RAW:
 else:
     print("results/kuairec/raw/ not found: skipping kuairec_error_distribution.pdf (Figure S4)")
 
-# ---------------------------------------------------------------- main-text Table 6 (tab:kuairec)
 r = S[S.variant == PRIM].pivot_table(index=["overlap", "n"], columns="method", values="rmse")
 c = S[S.variant == PRIM].pivot_table(index=["overlap", "n"], columns="method", values="coverage")
 ms = ["DM", "SNIPW", "DR", "DR-clip", "RCF-DR-os", "RCF-DR-VR-SN"]
