@@ -1,6 +1,5 @@
 #!/bin/sh
-# KuaiRec application (Sections 6 and S11). Requires data/kuairec/reduced (see data/README.md).
-# About 20 min on 2 cores.
+# KuaiRec application (Sections 6 and S11)
 set -e
 cd "$(dirname "$0")/.."
 python -m real_data.kuairec.audit_kuairec                   # data audit
