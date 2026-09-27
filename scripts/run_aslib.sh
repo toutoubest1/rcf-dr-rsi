@@ -1,6 +1,6 @@
 #!/bin/sh
-# ASlib application (Sections 5 and S10). Requires data/aslib/aslib_data (see data/README.md).
-# About 55 min per scenario on 2 cores.
+# ASlib application (Sections 5 and S10).
+
 set -e
 cd "$(dirname "$0")/.."
 python -m real_data.aslib.audit_aslib                       # scenario audit and selection
