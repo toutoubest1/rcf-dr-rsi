@@ -1,13 +1,4 @@
-"""LaTeX tables of the ASlib application from the result summaries (no estimation).
-
-usage: python -m real_data.aslib.make_tables [OUTDIR]     (default: repository root)
-writes OUTDIR/tables/tab_aslib.tex                 main-text table: target-policy RMSE and coverage, primary reward
-       OUTDIR/supp_tables/aslib_selection.tex      policy-selection regret and P(best), primary reward
-       OUTDIR/supp_tables/aslib_sensitivity.tex    RMSE ratios and coverage under the sensitivity variants
-Inputs: results/aslib/tables/{aslib_target_summary.csv, aslib_selection_summary.csv, aslib_criteria.csv}.
-Note: the LaTeX layout of these three tables in the submitted manuscript was edited by hand; every number in
-them comes from the same summary files.
-"""
+"""LaTeX tables of the ASlib application from the result summaries (no estimation)."""
 import sys
 from pathlib import Path
 
@@ -28,7 +19,6 @@ def main():
     SEL = pd.read_csv(TAB / "aslib_selection_summary.csv")
     C = pd.read_csv(TAB / "aslib_criteria.csv")
 
-    # ---------------------------------------------------------------- main-text table
     L = [r"""\begin{table}[t]
 \centering\spacingset{1}
 \caption{ASlib target-policy results for the primary reward (negative log runtime under each scenario's timeout convention), 500 replications per cell, exact policy values. RMSE and 95\% Wald coverage; complete results in Supplement~S10.}
@@ -60,7 +50,6 @@ Scenario & Overlap & $n$ & """ + " & ".join(MS) + r""" & RCF-DR-os & RCF-DR-VR-S
 \end{table}""")
     (OUT / "tables" / "tab_aslib.tex").write_text("\n".join(L) + "\n")
 
-    # ---------------------------------------------------------------- selection
     L = [r"""\begin{table}[htbp]
 \centering\spacingset{1}
 \caption{ASlib policy selection among nine candidate solver-selection policies (primary reward, 500 replications): mean regret $V(\pi^\ast)-V(\hat\pi)$, with the probability of selecting the true best policy in parentheses.}
@@ -89,7 +78,6 @@ Scenario & Overlap & $n$ & """ + " & ".join(MS) + r""" \\
 \end{table}""")
     (OUT / "supp_tables" / "aslib_selection.tex").write_text("\n".join(L) + "\n")
 
-    # ---------------------------------------------------------------- sensitivity
     L = [r"""\begin{table}[htbp]
 \centering\spacingset{1}
 \caption{ASlib sensitivity analyses: ranges over the ten moderate and poor-overlap cells of the RMSE ratios of each comparison estimator to RCF-DR-VR-SN (values above one favour RCF-DR-VR-SN), the number of cells in which RCF-DR-VR-SN has lower RMSE than both DR and DR-clip, and the RCF-DR-VR-SN coverage path at moderate and poor overlap ($n=250,\dots,4000$).}
