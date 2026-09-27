@@ -1,9 +1,4 @@
-"""LaTeX tables for the manuscript (main text and supplement), built only from the final result summaries
-written by experiments/analyze_final.py.  No simulation is run here.
-
-usage: python -m experiments.make_paper_tables [out_dir]      (default: repository root)
-Writes <out_dir>/tables/*.tex (main text) and <out_dir>/supp_tables/*.tex (supplement).
-"""
+"""LaTeX tables for the manuscript """
 import sys
 from pathlib import Path
 
@@ -50,7 +45,6 @@ def write(path, body):
     print("wrote", path)
 
 
-# ------------------------------------------------------------------ main tables
 def t1_representative(m, out):
     rows = []
     for rg in ["A", "B", "C", "D"]:
@@ -122,7 +116,6 @@ def adaptive_table(a, regime, label, caption, out_path, placement="t"):
     write(out_path, body)
 
 
-# ------------------------------------------------------------------ supplement tables
 def full_grid_tables(m, out):
     """One longtable per regime and metric group: rows (noise, overlap, n), columns = 8 estimators."""
     for rg in ["A", "B", "C", "D"]:
