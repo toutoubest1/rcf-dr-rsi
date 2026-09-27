@@ -1,7 +1,5 @@
-"""Figure 7 (main text): KuaiRec RMSE and 95% Wald coverage versus n for the target policy, primary reward
+"""KuaiRec RMSE and 95% Wald coverage versus n for the target policy, primary reward
 log(1 + watch ratio), Huber reward model; columns = uniform / moderate / poor overlap.
-
-usage: python -m real_data.kuairec.make_main_figure   -> figures/kuairec_rmse_coverage.pdf (+ .png)
 """
 from pathlib import Path
 import sys
