@@ -1,4 +1,4 @@
-"""Paths of the ASlib application (all relative to the repository root)."""
+"""Paths of the ASlib application """
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
