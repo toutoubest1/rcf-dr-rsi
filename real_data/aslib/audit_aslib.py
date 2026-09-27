@@ -1,7 +1,4 @@
-"""Audit of all ASlib runtime scenarios and scenario selection (no estimator is run here).
-
-usage: python -m real_data.aslib.audit_aslib   -> results/aslib/tables/aslib_audit.csv, results/aslib/tables/aslib_audit_solvers_<scenario>.csv
-"""
+"""Audit of all ASlib runtime scenarios and scenario selection (no estimator is run here)."""
 import os
 import sys
 from pathlib import Path
