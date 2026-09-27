@@ -1,10 +1,4 @@
 """ASlib application: estimator runs under semi-synthetic logging over the full solver-instance outcome table.
-
-Pre-registered in docs/aslib/PREREGISTRATION.md. The eight estimators are src/registry.py
-REAL_DATA_ESTIMATORS (frozen tuning); the cross-fitted reward model is src/realdata.crossfit_mhat.
-
-usage: python -m real_data.aslib.run_aslib SCENARIO [n_reps] [n_jobs]      (final: 500 replications)
-output: results/aslib/raw/<scenario>/cell_<overlap>_<n>.pkl.gz (one row per rep x variant x policy x method)
 """
 from __future__ import annotations
 
