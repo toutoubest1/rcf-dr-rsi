@@ -1,7 +1,4 @@
 """ASlib design: data preparation, rewards, timeout conventions, policies, outcome-free overlap calibration.
-
-Everything in this module was fixed in docs/aslib/PREREGISTRATION.md before any estimator was run on ASlib.
-No estimator is imported here.
 """
 from __future__ import annotations
 
@@ -30,7 +27,6 @@ ESS_TARGETS_FINAL = {"good": None, "moderate": 0.05, "poor": 0.01}
 SCEN_ID = {"SAT03-16_INDU": 1, "ASP-POTASSCO": 2}
 
 
-# ------------------------------------------------------------------ data
 def load(scenario):
     desc, runs, feats = load_scenario(scenario)
     col = "runtime" if "runtime" in runs.columns else "PAR10"
@@ -95,7 +91,6 @@ def split(n):
     return np.sort(perm[:k]), np.sort(perm[k:])
 
 
-# ------------------------------------------------------------------ policies
 def softmax(s):
     s = s - s.max(axis=1, keepdims=True)
     e = np.exp(s)
