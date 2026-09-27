@@ -1,8 +1,4 @@
 """Re-run a few replications with the repository code and compare them with the saved replication files.
-
-usage: python -m tests.verify_against_saved [sim] [aslib] [kuairec]
-Requires the saved raw results (results/*/raw, see REPRODUCIBILITY.md) and, for aslib / kuairec, the data.
-Every estimate must agree to 1e-9 (the code path is deterministic given the seeds).
 """
 import sys
 
