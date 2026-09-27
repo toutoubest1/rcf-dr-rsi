@@ -1,7 +1,4 @@
 """ASlib summaries, figures (Figure 6, S2, S3) and evaluation of the pre-registered decision criteria.
-
-usage: python -m real_data.aslib.analyze_aslib        -> results/aslib/tables/*.csv, figures/aslib_*.png
-       python -m real_data.aslib.analyze_aslib md     -> results/aslib/tables/aslib_md_tables.md
 """
 import sys
 from pathlib import Path
@@ -105,7 +102,7 @@ def main():
 
 
 def criteria(S, SEL):
-    """Pre-registered decision criteria C1-C4 (docs/aslib/PREREGISTRATION.md, section 6)."""
+    """Pre-registered decision criteria C1-C4 (section 6)."""
     rows = []
     for (scen, var), x in S.groupby(["scenario", "variant"]):
         p = x.pivot_table(index=["overlap", "n"], columns="method", values="rmse")
@@ -176,7 +173,6 @@ def figures(S, SEL):
 
 
 def md_tables():
-    """Markdown tables used in docs/aslib/ASLIB_RESULTS.md (written to results/aslib/tables/aslib_md_tables.md)."""
     S = pd.read_csv(TAB / "aslib_target_summary.csv")
     SEL = pd.read_csv(TAB / "aslib_selection_summary.csv")
     DG = pd.read_csv(TAB / "aslib_weight_diagnostics.csv")
