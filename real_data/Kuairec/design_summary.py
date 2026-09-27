@@ -1,6 +1,4 @@
 """Record the fixed KuaiRec design (no estimator): kappa, population ESS, exact candidate-policy values, hashes.
-
-usage: python -m real_data.kuairec.design_summary   -> results/kuairec/tables/design_kuairec.json
 """
 import hashlib
 import json
