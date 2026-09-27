@@ -1,9 +1,4 @@
-"""KuaiRec data audit (no estimator): matrix density, missing cells, reward and residual diagnostics (Table S35).
-
-Uses data/kuairec/reduced/ written by real_data/kuairec/reduce_kuairec.py from the official KuaiRec.zip
-(Zenodo record 18164998, md5 261550d472c48eff4990fb13c0e5bcf7).
-usage: python -m real_data.kuairec.audit_kuairec   -> results/kuairec/tables/kuairec_audit.json
-"""
+"""KuaiRec data audit (no estimator): matrix density, missing cells, reward and residual diagnostics (Table S35)."""
 import ast
 import json
 from pathlib import Path
