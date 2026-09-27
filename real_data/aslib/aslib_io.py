@@ -1,9 +1,4 @@
-"""Minimal ASlib reader (ASlib format specification, coseal/aslib_data).
-
-Reads description.txt (YAML), algorithm_runs.arff, feature_values.arff and feature_runstatus.arff.
-ARFF parsing: attributes in declared order, data section as CSV ('?' = missing). No third-party ARFF library is
-used because instance ids are STRING attributes (not supported by scipy.io.arff).
-"""
+"""Minimal ASlib reader (ASlib format specification, coseal/aslib_data)."""
 from __future__ import annotations
 
 import csv
