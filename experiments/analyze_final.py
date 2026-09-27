@@ -1,8 +1,7 @@
-"""Simulation figures (Figures 1-5, S1) and summary tables for the paper.
+"""Simulation figures and summary tables 
 
 usage: python -m experiments.analyze_final [grid] [select] [adapt] [contam] [extra]
-Reads results/simulation/raw/*_final*.csv.gz (+ tables/adaptdiag_r3_by_batch.csv for Figure 4, right panel);
-writes results/simulation/tables/final_*.csv|md and figures/fig*.png.
+
 """
 import sys
 
@@ -16,9 +15,7 @@ from experiments.common import FIG, GRID, INK2, RAW, SERIES, TAB, trim_png
 from src.metrics import selection_metrics, value_metrics
 from src.policies import candidate_policies_v3
 
-# Paper figures are written to figures/ without in-image titles (the manuscript captions replace them) and
-# then cropped to their content with a 12-pixel white border (common.trim_png).  Set PAPER_TITLES=1 to keep
-# the in-image titles.
+
 import os
 PAPER = FIG
 if os.environ.get("PAPER_TITLES") != "1":
@@ -62,7 +59,6 @@ def grid_metrics(d):
     return m
 
 
-# ------------------------------------------------------------------ tables
 def table_representative(m):
     rows = []
     for rg in ["A", "B", "C", "D"]:
@@ -104,7 +100,6 @@ def relative_efficiency(m):
     return out
 
 
-# ------------------------------------------------------------------ figures
 def fig1_rmse_vs_ess(m, n=1000):
     scen = ["gauss", "t3", "contam05", "gross"]
     fig, axes = plt.subplots(2, 4, figsize=(12, 5.6))
