@@ -1,4 +1,4 @@
-"""Forward-fitting check (Supplement S6): does forward (chronological) fitting restore the martingale property?
+"""Forward-fitting check (Supplement S6): does forward (chronological) fitting restore the martingale property
 
 For batched adaptive logging with KNOWN logging probabilities, we compute per batch b the mean of the
 uncapped DR score minus V, xi_t = mhat_pi(X_t) + w_t (Y_t - mhat(X_t, A_t)) - V, averaged over
