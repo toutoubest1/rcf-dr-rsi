@@ -1,5 +1,4 @@
-"""Record the fixed ASlib design (no estimator is run). Writes results/aslib/tables/design_<scenario>.json and
-results/aslib/tables/policy_truth_<scenario>.csv (exact candidate-policy values from the full outcome table)."""
+"""Record the fixed ASlib design (no estimator is run)."""
 import hashlib
 import json
 import sys
