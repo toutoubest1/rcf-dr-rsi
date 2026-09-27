@@ -1,10 +1,4 @@
-"""KuaiRec semi-synthetic OPE study with the frozen estimators (pre-registered in docs/kuairec/PREREGISTRATION.md).
-
-usage: python -m real_data.kuairec.run_kuairec [n_reps] [n_jobs]      (final: 500 replications)
-output: results/kuairec/raw/cell_<overlap>_<n>.pkl.gz  (one row per rep x variant x candidate policy x method)
-Variants: primary reward log1p(watch ratio) with the Huber reward model; raw watch ratio (Huber);
-log1p(watch ratio) with the least-squares reward model.  All variants share users, actions, videos and folds.
-"""
+"""KuaiRec semi-synthetic OPE study with the frozen estimators"""
 from __future__ import annotations
 
 import json
@@ -47,7 +41,6 @@ def run_estimators(pols, idx, A, y, mhat, pb, truth, variant, rep, n):
     return rows
 
 
-# ------------------------------------------------------------------ KuaiRec
 def kuairec_context():
     d = KuaiRec()
     pb = {}
