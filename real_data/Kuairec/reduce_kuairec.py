@@ -1,13 +1,4 @@
-"""Reduce the official KuaiRec release to the files used by the analysis (columns kept verbatim).
-
-usage: python -m real_data.kuairec.reduce_kuairec [path/to/KuaiRec.zip]     (default: data/kuairec/KuaiRec.zip)
-Reads   "KuaiRec 2.0/data/{small_matrix,big_matrix,item_categories,user_features}.csv" from the zip and writes
-        data/kuairec/reduced/small_matrix.npz            (all 4,676,570 rows of the small matrix)
-        data/kuairec/reduced/big_matrix_smallusers.npz   (big-matrix rows of the 1,411 small-matrix users)
-        data/kuairec/reduced/item_categories.csv, user_features.csv (copies)
-Expected input: KuaiRec.zip from Zenodo record 18164998, md5 261550d472c48eff4990fb13c0e5bcf7.
-The big matrix (1.1 GB) is read in chunks, so about 2 GB of memory suffices.
-"""
+"""Reduce the official KuaiRec release to the files used by the analysis (columns kept verbatim)"""
 import hashlib
 import sys
 import zipfile
