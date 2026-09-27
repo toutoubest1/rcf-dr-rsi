@@ -1,8 +1,4 @@
 """KuaiRec design: data, rewards, category actions, missing-cell rule, user split, features, PCA, policies.
-
-Fixed in docs/kuairec/PREREGISTRATION.md before any estimator was run.  No estimator is used here.
-Input: data/kuairec/reduced/{small_matrix.npz, big_matrix_smallusers.npz, item_categories.csv,
-user_features.csv}, produced by real_data/kuairec/reduce_kuairec.py from the official KuaiRec.zip.
 """
 from __future__ import annotations
 
@@ -24,7 +20,6 @@ ALPHAS = np.logspace(-2, 4, 25)
 KUAIREC_MIN_ITEMS = 50          # categories with >= 50 small-matrix videos kept, the rest pooled into "other"
 
 
-# ------------------------------------------------------------------ shared helpers
 def softmax(s):
     s = s - s.max(axis=1, keepdims=True)
     e = np.exp(s)
@@ -106,7 +101,6 @@ def candidates(u_hat, g_hat, rf_hat, sbs, sbs2):
     }
 
 
-# ------------------------------------------------------------------ KuaiRec
 def kuairec_reward(wr, reward):
     return {"log1p_wr": np.log1p(wr), "wr": wr}[reward]
 
