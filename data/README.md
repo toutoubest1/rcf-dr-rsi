@@ -26,6 +26,4 @@ wget -O data/kuairec/KuaiRec.zip https://zenodo.org/records/18164998/files/KuaiR
 python -m real_data.kuairec.reduce_kuairec data/kuairec/KuaiRec.zip
 ```
 
-`reduce_kuairec.py` writes `data/kuairec/reduced/` (about 100 MB): the full small matrix, the big-matrix rows of
-the 1,411 small-matrix users, `item_categories.csv` and `user_features.csv`. All KuaiRec scripts read only these
-files. If `wget` is blocked, download the zip in a browser from https://zenodo.org/records/18164998.
+If `wget` is blocked, download the zip in a browser from https://zenodo.org/records/18164998.
