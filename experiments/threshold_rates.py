@@ -4,9 +4,6 @@ Poor overlap, oracle (known) logging probabilities, regimes C-huber-oracle (rewa
 A-huber-oracle, noise laws gauss / t3 / contam05 / gross_pos, n = 5000, 10000, 20000 with 200 / 150 / 100
 replications, base seed 3030 (these are the runs rates_r3_n* of the development log).  Both thresholds are
 anchored so that tau = 2.8 MAD at n = 1000.  DR and RCF-DR-os are included as references.
-
-usage: python -m experiments.threshold_rates           # simulation (about 5 min on 2 cores)
-       python -m experiments.threshold_rates summary   # results/simulation/tables/threshold_rates_value_metrics.csv
 """
 import sys
 
