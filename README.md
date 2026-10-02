@@ -56,24 +56,8 @@ tests/                   unit tests and a check against the saved replications
 Neither dataset is redistributed here. Download instructions are in `data/README.md`.
 
 - **ASlib**: `coseal/aslib_data`, commit `551b22be`, scenarios SAT03-16_INDU and ASP-POTASSCO.
-- **KuaiRec 2.0**: Zenodo record 18164998 (`KuaiRec.zip`, CC BY-SA 4.0). Reduce it with
-  `python -m real_data.kuairec.reduce_kuairec`.
+- **KuaiRec 2.0**: Zenodo record 18164998 (`KuaiRec.zip`, CC BY-SA 4.0).
 
-## Using the estimator on new data
-
-```python
-from src.registry import REAL_DATA_ESTIMATORS
-from src.diagnostics import overlap_diagnostic
-
-fn, kw = REAL_DATA_ESTIMATORS["RCF-DR-VR-SN"]
-# pi, pbhat, mhat: n x K arrays (target probs, logging probs, reward-model predictions); A: actions; Y: rewards
-value, se, diag = fn(pi, A, Y, mhat, pbhat, return_diag=True, **kw)
-w = pi[range(len(A)), A] / pbhat[range(len(A)), A]
-print(value, se, overlap_diagnostic(w)["category"])     # warn when "non-root-n"
-```
-
-The method is intended for continuous, non-degenerate rewards. With sparse binary rewards, the MAD-based residual
-threshold can collapse.
 
 ## Citation and licence
 
